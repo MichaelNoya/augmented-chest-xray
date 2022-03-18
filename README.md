@@ -1,7 +1,8 @@
 # Augmented Chest X-Ray
+
 ## Introduction
 **Augmented Chest X-Ray** is a tool that uses data augmentation for training
-a CNN models specialized in multi-label classification of thorax anomalies in
+CNN models specialized in multi-label classification of thorax anomalies in
 X-ray images.
 * Optimized for training on the *NIH Chest X-ray Dataset*, introduced by Wang 
 et al.<sup id="ref1">[1](#foot1)</sup>
@@ -30,6 +31,29 @@ pathologies.
 ## Using the Repository <a name="instructions"></a>
 
 ### Setup and Requirements <a name="requirements"></a>
+
+#### Required Libraries
+* Python 3.8
+* Pytorch 1.11 with CUDA 11.3
+* [Albumentations](https://albumentations.ai/)
+* [WebDataset](https://github.com/webdataset/webdataset)
+* scikit-learn
+
+#### Installation using Anaconda
+Clone the project from GitHub:
+```shell
+$ git clone https://github.com/MichaelNoya/augmented-chest-xray.git
+```
+Change into the cloned directory and create the Anaconda environment:
+```shell
+$ cd augmented-chest-xray
+$ conda env create -f environment.yml
+```
+Activate the environment:
+```shell
+$ conda activate augmented_chest_xray
+```
+
 #### Data
 The required files of the *NIH Chest X-ray Dataset* can be downloaded from the 
 <b>National Institutes of Health - Clinical Center</b> at this 
@@ -42,12 +66,6 @@ data.
 Save the extracted images in `./data/original_data/images/` and the data entry
 file in `./data/original_data/meta_data/`. These default directories can be
 changed in `config.py`.
-#### Required Libraries
-* Python 3.8
-* Pytorch 1.11 with CUDA 11.3
-* [Albumentations](https://albumentations.ai/)
-* [WebDataset](https://github.com/webdataset/webdataset)
-* scikit-learn
 
 ### Preprocessing <a name="preprocessing"></a>
 Use `preprocess_data.py` to perform the following steps:
@@ -60,13 +78,14 @@ Run the preprocessing with default parameters:
 ```shell
 $ python preprocess_data.py
 ```
+
 #### Optional Parameters
 * `-r` or `--random_seed`: Seed for the random split of the dataset.
 * `-s` or `--subset_size`: If a subset_size is specified, the training,
 validation and test sets will be created using images of only a subset of the
 patients from the original dataset.
 
-#### Default values
+#### Default Values
 The following values can be adjusted in `config.py`:
 ```
 # Size in pixel for downscaling the images
@@ -87,6 +106,7 @@ TRAIN_LABELS = 'train_labels.csv'
 VAL_LABELS = 'val_labels.csv'
 TEST_LABELS = 'test_labels.csv'
 ```
+
 ### Training <a name="training"></a>
 Use `train_model.py` to train a CNN image classifier. After each epoch of 
 training the model is validated on the validation dataset. If the validation 
@@ -103,7 +123,8 @@ To train a new model using default parameters type:
 ```shell
 $ python train_model.py
 ```
-#### Optional parameters
+
+#### Optional Parameters
 * `-b` or `--batch_size`: Specify a mini batch size to use during training and 
 validation.
 * `-w` or `--workers`: Turn on multi-process data loading with the specified
@@ -118,6 +139,7 @@ scheduler should wait before decreasing the learning rate.
 * `-d` or `--debug`: Reduce the size of the datasets for debugging.
 * `-s` or `--saved_model`: File to load a state_dict from a previous training
 session.
+
 #### Examples
 Train a model for twelve epochs using the default values described in the
 CheXNet paper: 
@@ -145,7 +167,7 @@ can be improved by using the center crop flag:
 $ python validate_model.py --center_crop
 ```
 
-#### Optional parameters
+#### Optional Parameters
 * `-s` or `--saved_model`: Name of file from which to load the state_dict of a 
 trained model. If no filename is provided, the most recently created
 `*_model.pt` file will be loaded.
@@ -159,6 +181,7 @@ flag if the dataset was enhanced with data augmentation during training.
 Score in the results table.
 
 ## Comparison of Minimal vs. Advanced Data Augmentation <a name="augmentation"></a>
+
 ### Comparison Setup <a name="setup"></a>
 We compared the validation loss and test results of a group of models trained
 using only minimal data augmentation to a group of models trained using a 
@@ -175,12 +198,14 @@ training runs, with no learning rate decay. The models with the lowest
 validation loss in their respective group were selected for validation on a
 separate test set. The error metric used for the final evaluation was the mean
 area under the ROC (AUROC) over all classes.
+
 ### Implementation <a name="implementation"></a>
 The data augmentation pipelines for the training dataset are implemented in the
 module `transforms/augmented_transforms.py` using image transforms imported 
 from [Albumentations](https://albumentations.ai/). Default data augmentation
 parameters can be adjusted inside the module under the docstring block titled
 `Data augmentation parameters`.
+
 ### Results <a name="results"></a>
 When comparing the training and validation loss measured after each epoch we 
 can observe a clear regularizing effect caused by the data augmentation. This
@@ -212,6 +237,7 @@ Train the model with advanced data augmentation and validate it on the test set:
 %run train_model.py -b 16 -e 8 -l 0.0001 -p 8 -a
 %run validate_model.py -b 32 -c
 ```
+
 ## Reference <a name="reference"></a>
 
 <b id="foot1">1.</b> [^](#ref1) Wang et al. [ChestX-ray8: Hospital-scale Chest X-ray Database and Benchmarks on Weakly-Supervised Classification and Localization of Common Thorax Diseases](https://arxiv.org/abs/1705.02315), 2017

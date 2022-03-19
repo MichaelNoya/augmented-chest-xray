@@ -38,6 +38,7 @@ pathologies.
 * [Albumentations](https://albumentations.ai/)
 * [WebDataset](https://github.com/webdataset/webdataset)
 * scikit-learn
+* pandas
 
 #### Installation using Anaconda
 Clone the project from GitHub:

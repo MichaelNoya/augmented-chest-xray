@@ -18,6 +18,7 @@ pathologies.
 ## Table of Contents
 1. [Using the Repository](#instructions)
     * [Setup and Requirements](#requirements)
+    * [The Dataset](#dataset)
     * [Preprocessing](#preprocessing)
     * [Training](#training)
     * [Validation on the Test Set](#testing)
@@ -55,18 +56,34 @@ Activate the environment:
 $ conda activate augmented_chest_xray
 ```
 
-#### Data
-The required files of the *NIH Chest X-ray Dataset* can be downloaded from the 
-<b>National Institutes of Health - Clinical Center</b> at this 
-[link](https://nihcc.app.box.com/v/ChestXray-NIHCC). Required files for the 
-preprocessing and training: 
+### The Dataset <a name="dataset"></a>
+To train the classifier you require the *NIH Chest X-ray Dataset*. You can
+either download the full dataset (45GB), or a sample subset (1GB). The sample
+subset is already preprocessed and ready-to-use.
+
+#### Download the Full Dataset
+The full *NIH Chest X-ray Dataset* contains 112,120 X-ray images from 30,805
+unique patients. It can be downloaded from the <b>National Institutes of
+Health - Clinical Center</b> at this 
+[link](https://nihcc.app.box.com/v/ChestXray-NIHCC). The required files are: 
 - The extracted images
 - `Data_Entry_2017_v2020.csv`, which contains the class labels and patient
 data.
 
-Save the extracted images in `./data/original_data/images/` and the data entry
-file in `./data/original_data/meta_data/`. These default directories can be
-changed in `config.py`.
+Save the extracted images in
+`./augmented_chest_xray/data/original_data/images/` and the data entry file in
+`./augmented_chest_xray/data/original_data/meta_data/` and proceed to
+[Preprocessing](#preprocessing).
+
+#### Download the Sample Subset
+The sample subset consists of 18,031 X-ray images of 5,000 unique patients. It
+can be found in the
+[nih-chest-xray-webdataset-subset](https://github.com/MichaelNoya/nih-chest-xray-webdataset-subset)
+repository. Copy all the files from the `./datasets/` and `./labels/`
+directories into the `./augmented_chest_xray/data/datasets/` and
+`./augmented_chest_xray/data/labels/` directories. Since this subset is already
+preprocessed, you can skip the preprocessing step and go directly to
+[Training](#training).
 
 ### Preprocessing <a name="preprocessing"></a>
 Use `preprocess_data.py` to perform the following steps:

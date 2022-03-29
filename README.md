@@ -76,7 +76,7 @@ Save the extracted images in
 [Preprocessing](#preprocessing).
 
 #### Download the Sample Subset
-The sample subset consists of 18,031 X-ray images of 5,000 unique patients. It
+The sample subset consists of 30,545 X-ray images of 8,400 unique patients. It
 can be found in the
 [nih-chest-xray-webdataset-subset](https://github.com/MichaelNoya/nih-chest-xray-webdataset-subset)
 repository. Copy all the files from the `./datasets/` and `./labels/`

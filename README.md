@@ -45,36 +45,36 @@ installation.
 Clone the project repository from GitHub using either of following methods:
 - **HTTPS:** 
 ```shell
-$ git clone https://github.com/MichaelNoya/augmented-chest-xray.git
+git clone https://github.com/MichaelNoya/augmented-chest-xray.git
 ```
 - **SSH:**
 ```shell
-$ git clone git@github.com:MichaelNoya/augmented-chest-xray.git
+git clone git@github.com:MichaelNoya/augmented-chest-xray.git
 ```
 
-#### 2. Change into the cloned directory and create the venv environment:
+#### 2. Change into the cloned directory and create the venv environment
 
 ```shell
-$ cd augmented-chest-xray
-$ python -m venv env
+cd augmented-chest-xray
+python -m venv env
 ```
 
-#### 3. Activate the venv environment:
+#### 3. Activate the venv environment
 
 - **Windows:**
 ```shell
-$ env\Scripts\activate
+env\Scripts\activate
 ```
 - **Linux:**
 ```shell
-$ source env/bin/activate
+source env/bin/activate
 ```
 
 #### 4. Update pip
 
 Ensure you have the latest version of pip by updating it with the following command:
 ```shell
-$ python -m pip install --upgrade pip
+python -m pip install --upgrade pip
 ```
 
 #### 5. Install PyTorch
@@ -87,7 +87,7 @@ your OS and CUDA version for your hardware, and run the provided pip command.
 
 Install all the necessary dependencies by executing the following command in your virtual environment:
 ```shell
-$ pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ### The Dataset <a name="dataset"></a>
@@ -128,7 +128,7 @@ sequential data access.
 
 Run the preprocessing with default parameters:
 ```shell
-$ python preprocess_data.py
+python preprocess_data.py
 ```
 
 #### Optional Parameters
@@ -173,7 +173,7 @@ validation loss for each epoch.
 
 To train a new model using default parameters type:
 ```shell
-$ python train_model.py
+python train_model.py
 ```
 
 #### Optional Parameters
@@ -196,12 +196,12 @@ session.
 Train a model for twelve epochs using the default values described in the
 CheXNet paper: 
 ```shell
-$ python train_model.py -b 16 -e 12 -l 0.001 -f 0.1
+python train_model.py -b 16 -e 12 -l 0.001 -f 0.1
 ```
 This example loads a model saved in `my_model.pt` and fine-tunes it for seven
 epochs using data augmentation:
 ```shell
-$ python train_model.py -b 16 -e 7 -l 0.001 -s my_model.pt -a
+python train_model.py -b 16 -e 7 -l 0.001 -s my_model.pt -a
 ```
 
 ### Validation on the Test Set <a name="testing"></a>
@@ -211,12 +211,12 @@ the mean AUROC over all classes.
 
 Validate the latest saved model:
 ```shell
-$ python validate_model.py
+python validate_model.py
 ```
 If the model was trained using data augmentation, the validation performance
 can be improved by using the center crop flag:
 ```shell
-$ python validate_model.py --center_crop
+python validate_model.py --center_crop
 ```
 
 #### Optional Parameters

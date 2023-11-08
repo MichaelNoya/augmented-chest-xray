@@ -1,0 +1,5 @@
+albumentations
+opencv-python
+pandas
+scikit-learn
+webdataset

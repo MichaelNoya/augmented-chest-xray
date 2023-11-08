@@ -17,7 +17,8 @@ pathologies.
 
 ## Table of Contents
 1. [Using the Repository](#instructions)
-    * [Setup and Requirements](#requirements)
+    * [Requirements](#requirements)
+    * [Installation](#installation)
     * [The Dataset](#dataset)
     * [Preprocessing](#preprocessing)
     * [Training](#training)
@@ -31,29 +32,62 @@ pathologies.
 
 ## Using the Repository <a name="instructions"></a>
 
-### Setup and Requirements <a name="requirements"></a>
+### Requirements <a name="requirements"></a>
 
-#### Required Libraries
-* Python 3.8
-* Pytorch 1.11 with CUDA 11.3
-* [Albumentations](https://albumentations.ai/)
-* [WebDataset](https://github.com/webdataset/webdataset)
-* scikit-learn
-* pandas
+* Python 3.8 or higher
 
-#### Installation using Anaconda
-Clone the project from GitHub:
+Ensure you have the correct version of Python installed before starting the
+installation.
+
+### Installation <a name="installation"></a>
+
+#### 1. Clone the project repository
+Clone the project repository from GitHub using either of following methods:
+- **HTTPS:** 
 ```shell
 $ git clone https://github.com/MichaelNoya/augmented-chest-xray.git
 ```
-Change into the cloned directory and create the Anaconda environment:
+- **SSH:**
+```shell
+$ git clone git@github.com:MichaelNoya/augmented-chest-xray.git
+```
+
+#### 2. Change into the cloned directory and create the venv environment:
+
 ```shell
 $ cd augmented-chest-xray
-$ conda env create -f environment.yml
+$ python -m venv env
 ```
-Activate the environment:
+
+#### 3. Activate the venv environment:
+
+- **Windows:**
 ```shell
-$ conda activate augmented_chest_xray
+$ env\Scripts\activate
+```
+- **Linux:**
+```shell
+$ source env/bin/activate
+```
+
+#### 4. Update pip
+
+Ensure you have the latest version of pip by updating it with the following command:
+```shell
+$ python -m pip install --upgrade pip
+```
+
+#### 5. Install PyTorch
+
+To install PyTorch, please visit the Get Started page on the
+[official PyTorch website](https://pytorch.org/get-started/locally/). Select
+your OS and CUDA version for your hardware, and run the provided pip command.
+
+#### 6. Install the Other Required Packages
+
+Install all the necessary dependencies by executing the following command in your virtual environment:
+```shell
+$ pip install -r requirements.txt
 ```
 
 ### The Dataset <a name="dataset"></a>
